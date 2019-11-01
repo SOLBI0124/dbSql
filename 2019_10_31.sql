@@ -136,15 +136,16 @@ WHERE mgr is NULL;
 SELECT *
 FROM emp
 WHERE deptno != '10';   
+
 -- =, !=
---is null !is null
+--is null, is not null
 
 
 --실습 WHERE 6
 --emp 테이블에서 상여(comm)가 있는 회원의 정보 조회
 SELECT *
 FROM emp
-WHERE comm is not null;
+WHERE comm is null;
 
 -- AND / OR
 -- 관리자(mgr) 사번이 7698이고 급여가 1000 이상인 사람
