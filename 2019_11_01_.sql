@@ -1,16 +1,16 @@
--- º¹½À
+-- ë³µìŠµ
 
 -- WHERE
--- ¿¬»êÀÚ
--- ºñ±³ : =, !=, <>, >=, >, <=, <
+-- ì—°ì‚°ìž
+-- ë¹„êµ : =, !=, <>, >=, >, <=, <
 -- BETWEEN start AND end
 -- IN (set)
--- LIKE 'S%' (% : ´Ù¼öÀÇ ¹®ÀÚ¿­°ú ¸ÅÄª, 
---            _ : Á¤È®È÷ ÇÑ±ÛÀÚ ¸ÅÄª)
--- IS NULL (!= NULL ¾Æ´Ô)
+-- LIKE 'S%' (% : ë‹¤ìˆ˜ì˜ ë¬¸ìžì—´ê³¼ ë§¤ì¹­, 
+--            _ : ì •í™•ížˆ í•œê¸€ìž ë§¤ì¹­)
+-- IS NULL (!= NULL ì•„ë‹˜)
 -- AND, OR, NOT
 
--- empÅ×ÀÌºí¿¡¼­ ÀÔ»çÀÏÀÚ°¡ 1981³â 6¿ù 1ÀÏº¸ÅÍ 1986³â 12¿ù 31ÀÏ »çÀÌ¿¡ ÀÖ´Â Á÷¿ø Á¤º¸¼ö
+-- empí…Œì´ë¸”ì—ì„œ ìž…ì‚¬ì¼ìžê°€ 1981ë…„ 6ì›” 1ì¼ë³´í„° 1986ë…„ 12ì›” 31ì¼ ì‚¬ì´ì— ìžˆëŠ” ì§ì› ì •ë³´ìˆ˜
 SELECT *
 FROM emp
 WHERE  hiredate between TO_DATE('19810601', 'YYYYMMDD') 
@@ -22,21 +22,21 @@ FROM emp
 WHERE  hiredate >= TO_DATE('19810601', 'YYYYMMDD') 
   AND hiredate <= TO_DATE('19861231', 'YYYYMMDD');
   
---empÅ×ÀÌºí¿¡¼­ °ü¸®ÀÚ°¡ ÀÖ´Â Á÷¿ø¸¸ Á¶È¸
+--empí…Œì´ë¸”ì—ì„œ ê´€ë¦¬ìžê°€ ìžˆëŠ” ì§ì›ë§Œ ì¡°íšŒ
 SELECT *
 FROM emp
 WHERE mgr is not null;
 
 ------------------------------------------------------------------------
---½Ç½À where12
+--ì‹¤ìŠµ where12
 SELECT *
 FROM emp
 WHERE job='SALESMAN'
    OR empno LIKE '78%';
 
 
---½Ç½À where13
---empno´Â Á¤¼ö 4ÀÚ¸®±îÁö Çã¿ë
+--ì‹¤ìŠµ where13
+--empnoëŠ” ì •ìˆ˜ 4ìžë¦¬ê¹Œì§€ í—ˆìš©
 --empno : 78, 780, 7
 --         7800~7899
 --         780~789
@@ -52,53 +52,53 @@ WHERE job='SALESMAN'
    OR empno = 78;
    
    
---½Ç½À where 14
+--ì‹¤ìŠµ where 14
 SELECT *
 FROM emp
 WHERE job='SALESMAN'
     OR (empno LIKE '78%' 
         AND hiredate > TO_DATE('19810601', 'YYYYMMDD'));
 
---ORDER BY ÄÃ·³¸í | º°Äª | ÄÃ·³ ÀÎµ¦½º [ASC | DESC]
---ORDER BY ±¸¹®Àº WHEREÀý ´ÙÀ½¿¡ ±â¼ú
---WHEREÀýÀÌ ¾øÀ» °æ¿ì FROMÀý ´ÙÀ½¿¡ ±â¼ú
---ename±âÁØÀ¸·Î ¿À¸§Â÷¼ø Á¤·Ä
+--ORDER BY ì»¬ëŸ¼ëª… | ë³„ì¹­ | ì»¬ëŸ¼ ì¸ë±ìŠ¤ [ASC | DESC]
+--ORDER BY êµ¬ë¬¸ì€ WHEREì ˆ ë‹¤ìŒì— ê¸°ìˆ 
+--WHEREì ˆì´ ì—†ì„ ê²½ìš° FROMì ˆ ë‹¤ìŒì— ê¸°ìˆ 
+--enameê¸°ì¤€ìœ¼ë¡œ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
 SELECT *
 FROM emp
 ORDER BY ename ASC;
 
 --ASC : default
---ASC¸¦ ¾ÈºÙ¿©µµ À§ Äõ¸®¿Í µ¿ÀÏ
+--ASCë¥¼ ì•ˆë¶™ì—¬ë„ ìœ„ ì¿¼ë¦¬ì™€ ë™ì¼
 SELECT *
 FROM emp
 ORDER BY ename; --ASC
 
---ÀÌ¸§(ename)À» ±âÁØÀ¸·Î ³»¸²Â÷¼ø
+--ì´ë¦„(ename)ì„ ê¸°ì¤€ìœ¼ë¡œ ë‚´ë¦¼ì°¨ìˆœ
 SELECT *
 FROM emp
 ORDER BY ename DESC;
 
---jobÀ» ±âÁØÀ¸·Î ³»¸²Â÷¼øÀ¸·Î Á¤·Ä, ¸¸¾à »ç¹ø(empno)À¸·Î ¿Ã¸²Â÷¼ø Á¤·Ä
+--jobì„ ê¸°ì¤€ìœ¼ë¡œ ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬, ë§Œì•½ ì‚¬ë²ˆ(empno)ìœ¼ë¡œ ì˜¬ë¦¼ì°¨ìˆœ ì •ë ¬
 SELECT *
 FROM emp
 ORDER BY job DESC, empno ASC;
 
 
---º°ÄªÀ¸·Î Á¤·ÄÇÏ±â
---»ç¿ø ¹øÈ£(empno), »ç¿ø¸í(ename), ¿¬ºÀ(sal*12) as year_sal
---year_sal º°ÄªÀ¸·Î ¿À¸§Â÷¼ø Á¤·Ä
+--ë³„ì¹­ìœ¼ë¡œ ì •ë ¬í•˜ê¸°
+--ì‚¬ì› ë²ˆí˜¸(empno), ì‚¬ì›ëª…(ename), ì—°ë´‰(sal*12) as year_sal
+--year_sal ë³„ì¹­ìœ¼ë¡œ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
 SELECT empno, ename, sal, sal*12 as year_sal
 FROM emp
 ORDER BY year_sal;
 
---SELECTÀý ÄÃ·³ ¼ø¼­ ÀÎµ¦½º·Î Á¤·Ä
+--SELECTì ˆ ì»¬ëŸ¼ ìˆœì„œ ì¸ë±ìŠ¤ë¡œ ì •ë ¬
 SELECT empno, ename, sal, sal*12 as year_sal
 FROM emp
 ORDER BY 2;
---2 ÀÌ¸§¼ø
---4 ¿¬ºÀ¼ø
+--2 ì´ë¦„ìˆœ
+--4 ì—°ë´‰ìˆœ
 
---½Ç½À orderby1
+--ì‹¤ìŠµ orderby1
 desc dept;
 
 SELECT *
@@ -109,20 +109,20 @@ SELECT *
 FROM dept
 ORDER BY LOC DESC;
 
---½Ç½À orderby2
+--ì‹¤ìŠµ orderby2
 SELECT *
 FROM emp
 WHERE comm IS NOT NULL
 ORDER BY comm DESC, EMPNO;
 
---½Ç½À orderby3
+--ì‹¤ìŠµ orderby3
 SELECT *
 FROM emp
 WHERE mgr IS NOT NULL
 ORDER BY job, empno DESC;
 
---½Ç½À orderby4
---1500³Ñ´Â : sal > 1500
+--ì‹¤ìŠµ orderby4
+--1500ë„˜ëŠ” : sal > 1500
 SELECT *
 FROM emp
 WHERE (deptno = 10 OR deptno = 30)
@@ -137,12 +137,12 @@ desc emp;
 SELECT ROWNUM, empno, ename
 FROM emp
 WHERE ROWNUM = 1;
---WHERE ROWNUM = 2; ¾ÈµÊ(1¹øºÎÅÍ ÀÐ¾î¾ßÇÔ)
---WHERE ROWNUM <= 5; °¡´É
---WHERE ROWNUM > 10; ¾ÈµÊ(1~10±îÁö ¾ÈÀÐ¾ú±â ¶§¹®)
+--WHERE ROWNUM = 2; ì•ˆë¨(1ë²ˆë¶€í„° ì½ì–´ì•¼í•¨)
+--WHERE ROWNUM <= 5; ê°€ëŠ¥
+--WHERE ROWNUM > 10; ì•ˆë¨(1~10ê¹Œì§€ ì•ˆì½ì—ˆê¸° ë•Œë¬¸)
 
---empÅ×ÀÌºí¿¡¼­ »ç¹ø(empno), ÀÌ¸§(ename)À» ±Þ¿©±âÁØÀ¸·Î ¿À¸§Â÷¼ø, 
---Á¤·ÄµÈ °á°ú¼øÀ¸·Î ROWNUMÀû¿ë
+--empí…Œì´ë¸”ì—ì„œ ì‚¬ë²ˆ(empno), ì´ë¦„(ename)ì„ ê¸‰ì—¬ê¸°ì¤€ìœ¼ë¡œ ì˜¤ë¦„ì°¨ìˆœ, 
+--ì •ë ¬ëœ ê²°ê³¼ìˆœìœ¼ë¡œ ROWNUMì ìš©
 SELECT ROWNUM, empno, ename, sal
 FROM emp
 ORDER BY sal;
@@ -153,7 +153,7 @@ FROM
 (SELECT empno, ename, sal
 FROM emp
 ORDER BY sal) a;
---ÀÎ¶óÀÎºä µÚ¿¡ * º°Äª½á¾ßÇÔ
+--ì¸ë¼ì¸ë·° ë’¤ì— * ë³„ì¹­ì¨ì•¼í•¨
 
 --row_1
 SELECT ROWNUM, a.*
@@ -163,7 +163,7 @@ FROM emp
 ORDER BY sal) a
 WHERE ROWNUM <= 10;
 
---row_2 (ROWNUM°ªÀÌ 11~14ÀÎ°ª) ROWNUMº°Äª, °á°ú¸¦ ÀÎ¶óÀÎÀ¸·Î ¹­°í whereÀý¿¡ 
+--row_2 (ROWNUMê°’ì´ 11~14ì¸ê°’) ROWNUMë³„ì¹­, ê²°ê³¼ë¥¼ ì¸ë¼ì¸ìœ¼ë¡œ ë¬¶ê³  whereì ˆì— 
 SELECT *
 FROM
     (SELECT ROWNUM rn, a.*
@@ -175,20 +175,20 @@ WHERE rn between 11 and 14;
 
 -----------------------------------------------
 --FUNCTION
---DUAL Å×ÀÌºí Á¶È¸
+--DUAL í…Œì´ë¸” ì¡°íšŒ
 SELECT 'HELLO WORLD' as msg
 FROM DUAL;
 
---¹®ÀÚ¿­ ´ë¼Ò¹®ÀÚ °ü·ÃµÈ ÇÔ¼ö
---LOWER, UPPER, INITCAP(Ã¹±ÛÀÚ¸¸´ë¹®ÀÚ)
+--ë¬¸ìžì—´ ëŒ€ì†Œë¬¸ìž ê´€ë ¨ëœ í•¨ìˆ˜
+--LOWER, UPPER, INITCAP(ì²«ê¸€ìžë§ŒëŒ€ë¬¸ìž)
 SELECT LOWER('HELLO, WORLD'), UPPER('hello, world'), INITCAP('hello, world')
 FROM dual;
 
---ÀÏ¹ÝÅ×ÀÌºí¿¡¼­ ÇÏ¸é µ¥ÀÌÅÍ °Ç¼ö¸¸Å­ ³ª¿È
+--ì¼ë°˜í…Œì´ë¸”ì—ì„œ í•˜ë©´ ë°ì´í„° ê±´ìˆ˜ë§Œí¼ ë‚˜ì˜´
 SELECT 'HELLO WORLD'
 FROM emp;
 
---FUNCTIONÀº WHEREÀý¿¡¼­µµ »ç¿ë°¡´É
+--FUNCTIONì€ WHEREì ˆì—ì„œë„ ì‚¬ìš©ê°€ëŠ¥
 SELECT *
 FROM emp
 WHERE ename = UPPER('smith');
@@ -197,30 +197,30 @@ SELECT *
 FROM emp
 WHERE LOWER(ename) = 'smith';
 
---°³¹ßÀÚ 7°ÅÁö¾Ç
---1.ÁÂº¯À» °¡°øÇÏÁö ¸»¾Æ¶ó
---ÁÂº¯(TABLEÀÇ ÄÃ·³)À» °¡°øÇÏ°Ô µÇ¸é INDEX¸¦ Á¤»óÀûÀ¸·Î »ç¿ëÇÏÁö ¸øÇÔ
+--ê°œë°œìž 7ê±°ì§€ì•…
+--1.ì¢Œë³€ì„ ê°€ê³µí•˜ì§€ ë§ì•„ë¼
+--ì¢Œë³€(TABLEì˜ ì»¬ëŸ¼)ì„ ê°€ê³µí•˜ê²Œ ë˜ë©´ INDEXë¥¼ ì •ìƒì ìœ¼ë¡œ ì‚¬ìš©í•˜ì§€ ëª»í•¨
 --Function BAsed Index -> FBI
 
---CONCAT : ¹®ÀÚ¿­ °áÇÕ 
---µÎ°³ÀÇ ¹®ÀÚ¿­À» °áÇÕÇÏ´Â ÇÔ¼ö
+--CONCAT : ë¬¸ìžì—´ ê²°í•© 
+--ë‘ê°œì˜ ë¬¸ìžì—´ì„ ê²°í•©í•˜ëŠ” í•¨ìˆ˜
 SELECT CONCAT('HELLO', ', WORLD') as CONCAT
 FROM dual;
---¹®ÀÚ¿­ ¼¼°³ °áÇÕ
---SUBSTR : ¹®ÀÚ¿­ÀÇ ºÎºÐ ¹®ÀÚ¿­(java : String.substring) 1ÀÌ»ó5ÀÌÇÏ
---LENGTH : ¹®ÀÚ¿­ÀÇ ±æÀÌ
---INSTR : ¹®ÀÚ¿­¿¡ Æ¯Á¤ ¹®ÀÚ¿­ÀÌ µîÀåÇÏ´Â Ã¹¹øÂ° ÀÎµ¦½º
---LPAD : ¹®ÀÚ¿­¿¡ Æ¯Á¤ ¹®ÀÚ¿­À» »ðÀÔ
+--ë¬¸ìžì—´ ì„¸ê°œ ê²°í•©
+--SUBSTR : ë¬¸ìžì—´ì˜ ë¶€ë¶„ ë¬¸ìžì—´(java : String.substring) 1ì´ìƒ5ì´í•˜
+--LENGTH : ë¬¸ìžì—´ì˜ ê¸¸ì´
+--INSTR : ë¬¸ìžì—´ì— íŠ¹ì • ë¬¸ìžì—´ì´ ë“±ìž¥í•˜ëŠ” ì²«ë²ˆì§¸ ì¸ë±ìŠ¤
+--LPAD : ë¬¸ìžì—´ì— íŠ¹ì • ë¬¸ìžì—´ì„ ì‚½ìž…
 SELECT CONCAT(CONCAT('HELLO', ','), 'WORLD') as CONCAT,
         SUBSTR('HELLO, WORLD', 0 ,5) substr1,
          SUBSTR('HELLO, WORLD', 1 ,5) substr2,
          LENGTH('HELLO, WORLD') length,
          INSTR('HELLO, WORLD', 'O') instr1,
-         --INSTR(¹®ÀÚ¿­, Ã£À» ¹®ÀÚ¿­, ¹®ÀÚ¿­ÀÇ Æ¯Á¤ À§Ä¡ ÀÌÈÄ Ç¥½Ã)
+         --INSTR(ë¬¸ìžì—´, ì°¾ì„ ë¬¸ìžì—´, ë¬¸ìžì—´ì˜ íŠ¹ì • ìœ„ì¹˜ ì´í›„ í‘œì‹œ)
          INSTR('HELLO, WORLD', 'O', 6) instr2,
-         --LPAD(¹®ÀÚ¿­, ÀüÃ¼ ¹®ÀÚ¿­±æÀÌ, ¹®ÀÚ¿­ÀÌ ÀüÃ¼¹®ÀÚ¿­ ±æÀÌ¿¡ ¹ÌÄ¡Áö ¸øÇÒ°æ¿ì ¿ÞÂÊ¿¡ Ãß°¡ÇÒ ¹®ÀÚ)
+         --LPAD(ë¬¸ìžì—´, ì „ì²´ ë¬¸ìžì—´ê¸¸ì´, ë¬¸ìžì—´ì´ ì „ì²´ë¬¸ìžì—´ ê¸¸ì´ì— ë¯¸ì¹˜ì§€ ëª»í• ê²½ìš° ì™¼ìª½ì— ì¶”ê°€í•  ë¬¸ìž)
          LPAD('HELLO, WORLD',15,'*') lpad1,
-         LPAD('HELLO, WORLD',15) lpad2,         --lapd2, lapd3µ¿ÀÏ
+         LPAD('HELLO, WORLD',15) lpad2,         --lapd2, lapd3ë™ì¼
          LPAD('HELLO, WORLD',15,' ') lpad3,
          RPAD('HELLO, WORLD',15,'*') rpad1
 FROM dual;
