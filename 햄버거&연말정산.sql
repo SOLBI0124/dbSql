@@ -1,12 +1,12 @@
 SELECT *
 FROM fastfood;
 
---ÇÑµµ½ÃÀÇ ¹ßÀü¼öÁØ : (¹ö°ÅÅ· + ¸Æµµ³¯µå + KFC) / ·Ôµ¥¸®¾Æ
---½Ãµµ, ½Ã±º±¸º° ¸ÅÀå¼ö (¹ö°ÅÅ·, ¸Æµµ³¯µå, KFC) : 
---½Ãµµ, ½Ã±º±¸º° ¸ÅÀå¼ö (·Ôµ¥¸®¾Æ) : 
+--í•œë„ì‹œì˜ ë°œì „ìˆ˜ì¤€ : (ë²„ê±°í‚¹ + ë§¥ë„ë‚ ë“œ + KFC) / ë¡¯ë°ë¦¬ì•„
+--ì‹œë„, ì‹œêµ°êµ¬ë³„ ë§¤ì¥ìˆ˜ (ë²„ê±°í‚¹, ë§¥ë„ë‚ ë“œ, KFC) : 
+--ì‹œë„, ì‹œêµ°êµ¬ë³„ ë§¤ì¥ìˆ˜ (ë¡¯ë°ë¦¬ì•„) : 
 SELECT sido || sigungu sidogungu, count(*) cnt
 FROM fastfood
-WHERE gb='·Ôµ¥¸®¾Æ'
+WHERE gb='ë¡¯ë°ë¦¬ì•„'
 GROUP BY sido, sigungu;
 
 SELECT id, sido, sigungu,gb
@@ -14,7 +14,7 @@ FROM fastfood;
 
 SELECT sido || sigungu sidogungu, count(*) cnt
 FROM fastfood
-WHERE gb in('¹ö°ÅÅ·','¸Æµµ³¯µå','KFC')
+WHERE gb in('ë²„ê±°í‚¹','ë§¥ë„ë‚ ë“œ','KFC')
 GROUP BY sido, sigungu;
 
 
@@ -22,10 +22,10 @@ SELECT a.sido, a.sigungu, b.cnt bmk, a.cnt l, ROUND(b.cnt/a.cnt,2) rank
 FROM
     (SELECT sido, sigungu, count(*) cnt
     FROM fastfood
-    WHERE gb='·Ôµ¥¸®¾Æ'
+    WHERE gb='ë¡¯ë°ë¦¬ì•„'
     GROUP BY sido, sigungu) a, (SELECT sido, sigungu, count(*) cnt
                                  FROM fastfood
-                                 WHERE gb in('¹ö°ÅÅ·','¸Æµµ³¯µå','KFC')
+                                 WHERE gb in('ë²„ê±°í‚¹','ë§¥ë„ë‚ ë“œ','KFC')
                                  GROUP BY sido, sigungu) b
 WHERE a.sido=b.sido AND a.sigungu = b.sigungu
 ORDER BY rank desc;
@@ -37,10 +37,10 @@ FROM
 FROM
     (SELECT sido, sigungu, count(*) cnt
     FROM fastfood
-    WHERE gb='·Ôµ¥¸®¾Æ'
+    WHERE gb='ë¡¯ë°ë¦¬ì•„'
     GROUP BY sido, sigungu) a, (SELECT sido, sigungu, count(*) cnt
                                  FROM fastfood
-                                 WHERE gb in('¹ö°ÅÅ·','¸Æµµ³¯µå','KFC')
+                                 WHERE gb in('ë²„ê±°í‚¹','ë§¥ë„ë‚ ë“œ','KFC')
                                  GROUP BY sido, sigungu) b
 WHERE a.sido=b.sido AND a.sigungu = b.sigungu
 ORDER BY point desc)c;
@@ -52,9 +52,9 @@ FROM
 FROM tax
 ORDER BY sal desc) d;
 
---¹ö°ÅÁö¼ö ½Ãµµ, ½Ã±º±¸ | ¿¬¸»Á¤»ê ½Ãµµ ½Ã±º±¸
---½Ãµµ, ½Ã±º±¸, ¹ö°ÅÁö¼ö, ½Ãµµ, ½Ã±º±¸, ¿¬¸»Á¤»ê ³³ÀÔ¾×
---¼­¿ï½Ã Áß±¸ 5.7 °æ±âµµ ¼ö¿ø½Ã 18623591
+--ë²„ê±°ì§€ìˆ˜ ì‹œë„, ì‹œêµ°êµ¬ | ì—°ë§ì •ì‚° ì‹œë„ ì‹œêµ°êµ¬
+--ì‹œë„, ì‹œêµ°êµ¬, ë²„ê±°ì§€ìˆ˜, ì‹œë„, ì‹œêµ°êµ¬, ì—°ë§ì •ì‚° ë‚©ì…ì•¡
+--ì„œìš¸ì‹œ ì¤‘êµ¬ 5.7 ê²½ê¸°ë„ ìˆ˜ì›ì‹œ 18623591
 SELECT e.*, f.*
 FROM 
     (SELECT rownum r, c.*
@@ -63,10 +63,10 @@ FROM
         FROM
             (SELECT sido, sigungu, count(*) cnt
             FROM fastfood
-            WHERE gb='·Ôµ¥¸®¾Æ'
+            WHERE gb='ë¡¯ë°ë¦¬ì•„'
             GROUP BY sido, sigungu) a, (SELECT sido, sigungu, count(*) cnt
                                          FROM fastfood
-                                         WHERE gb in('¹ö°ÅÅ·','¸Æµµ³¯µå','KFC')
+                                         WHERE gb in('ë²„ê±°í‚¹','ë§¥ë„ë‚ ë“œ','KFC')
                                          GROUP BY sido, sigungu) b
       WHERE a.sido=b.sido AND a.sigungu = b.sigungu
       ORDER BY point desc) c) e, (SELECT rownum r, d.*
